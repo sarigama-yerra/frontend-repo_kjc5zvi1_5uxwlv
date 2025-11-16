@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Hero from './components/Hero'
 import RequestForm from './components/RequestForm'
 import RequestsList from './components/RequestsList'
+import VoltChat from './components/VoltChat'
 
 function App() {
   const [lastRequest, setLastRequest] = useState(null)
@@ -17,6 +18,7 @@ function App() {
               {lastRequest && (
                 <p className="mt-3 text-sm text-gray-300">Queued request: {lastRequest.request_id}</p>
               )}
+              <VoltChat />
             </div>
             <div>
               <RequestsList />
