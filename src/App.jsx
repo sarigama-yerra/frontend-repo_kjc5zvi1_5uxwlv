@@ -1,26 +1,32 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
+import Hero from './components/Hero'
+import RequestForm from './components/RequestForm'
+import RequestsList from './components/RequestsList'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [lastRequest, setLastRequest] = useState(null)
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-blue-50 flex items-center justify-center">
-      <div className="bg-white p-8 rounded-lg shadow-lg">
-        <h1 className="text-3xl font-bold text-gray-800 mb-4">
-          Vibe Coding Platform
-        </h1>
-        <p className="text-gray-600 mb-6">
-          Your AI-powered development environment
-        </p>
-        <div className="text-center">
-          <button
-            onClick={() => setCount(count + 1)}
-            className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded"
-          >
-            Count is {count}
-          </button>
+    <div className="min-h-screen bg-black text-white">
+      <Hero />
+      <main className="relative z-10 -mt-24">
+        <div className="container mx-auto px-6 pb-24">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div className="lg:col-span-2">
+              <RequestForm onSubmitted={setLastRequest} />
+              {lastRequest && (
+                <p className="mt-3 text-sm text-gray-300">Queued request: {lastRequest.request_id}</p>
+              )}
+            </div>
+            <div>
+              <RequestsList />
+            </div>
+          </div>
         </div>
-      </div>
+      </main>
+      <footer className="border-t border-white/10 py-8 text-center text-gray-400">
+        Built with a futuristic 3D vibe. Models referenced are placeholders for integration.
+      </footer>
     </div>
   )
 }
